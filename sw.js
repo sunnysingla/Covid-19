@@ -2,10 +2,10 @@ self.addEventListener('install', function (e) {
  e.waitUntil(
    caches.open('video-store').then(function(cache) {
      return cache.addAll([
-       '/Android-Home-Screen/',
-         '/Android-Home-Screen/index.html',
-         '/Android-Home-Screen/index.js',
-         '/Android-Home-Screen/sw.js'
+       '/Covid-19/',
+         '/Covid-19/index.html',
+         '/Covid-19/index.js',
+         '/Covid-19/sw.js'
      ]);
    })
  );
