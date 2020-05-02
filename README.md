@@ -4,7 +4,7 @@ var urlpart = location.href.split('=');
 
 //urlpart[1] is use as a dynamic url 
 
-Like base url is	https://robinsandday.github.io/Android-Home-Screen/index.html?url=dynamicurl
+Like base url is https://robinsandday.github.io/Android-Home-Screen/index.html?url=dynamicurl
 
                 $("#preview-frame").attr("src", urlpart[1]);
                 var myDynamicManifest = {

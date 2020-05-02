@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Robins & Day</title>
+    <title>Covid Symptom Checker</title>
     <link href="style.css" rel="stylesheet">
     <script src="index.js" defer></script>
     <link rel="manifest"    id="my-manifest-placeholder">
@@ -15,7 +15,6 @@
             overflow: hidden;
             font-family: arial;
             font-size: 10px;
-            color: #6e6e6e;
             background-color: #000;
         }
 
@@ -39,17 +38,17 @@
                 $("#preview-frame").attr("src", urlpart[1]);
                 var myDynamicManifest = {
                     "background_color": "White",
-                    "description": "Robins & Day Knack App.",
+                    "description": "Covid Symptom Checker",
                     "display": "fullscreen",
                     "icons": [
                         {
-                            "src": "https://sunnysingla.github.io/Covid-19/icon/app-icon.png",
+                            "src": "https://sunnysingla.github.io/Covid-19/icon/covid-19.jpg",
                             "sizes": "144x144",
                             "type": "image/png"
                         }
                     ],
-                    "name": "Robins & Day",
-                    "short_name": "Robins & Day",
+                    "name": "Covid Symptom Checker",
+                    "short_name": "Covid Symptom Checker",
                     "start_url": "https://sunnysingla.github.io/Covid-19/index.html?id=" + urlpart[1]
                 }
                 const stringManifest = JSON.stringify(myDynamicManifest);
@@ -73,7 +72,7 @@
 </head>
 <body>
  
-    <iframe id="preview-frame" src="https://salesjourney2.knack.com/digital-deal-file-orders#dialog-order-information/new-digital-deal-file/customer-details/" name="preview-frame" frameborder="0" noresize="noresize"></iframe>
+    <iframe id="preview-frame" src="/" name="preview-frame" frameborder="0" noresize="noresize"></iframe>
     <button class="w3-button w3-block w3-teal footer add-button">Add to Home Screen</button>
 </body>
 </html>

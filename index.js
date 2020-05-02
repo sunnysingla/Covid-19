@@ -2,7 +2,7 @@
 if('serviceWorker' in navigator) {
   navigator.serviceWorker
       .register('/Covid-19/sw.js')
-           .then(function() { console.log('Service Worker Registered'); });
+           .then(function() {  });
 }
 
 // Code to handle install prompt on desktop
@@ -37,7 +37,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
             //const maindv = document.getElementById('Main');
             //maindv.style.display = 'block';
         } else {
-          console.log('User dismissed the A2HS prompt');
+          //console.log('User dismissed the A2HS prompt');
         }
         deferredPrompt = null;
       });

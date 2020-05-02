@@ -1,15 +1,15 @@
 {
   "background_color": "White",
-  "description": "Robins & Day Knack App.",
+  "description": "Covid Symptom Checker",
   "display": "fullscreen",
   "icons": [
     {
-      "src": "icon/app-icon.png",
+      "src": "icon/covid-19.jpg",
       "sizes": "144x144",
       "type": "image/png"
     }
   ],
-  "name": "Robins & Day",
-  "short_name": "Robins & Day",
+  "name": "Covid Symptom Checker",
+  "short_name": "Covid Symptom Checker",
   "start_url": "/Covid-19/index.html"
 }
