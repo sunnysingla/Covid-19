@@ -4,8 +4,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Covid Symptom Checker</title>
     <link href="style.css" rel="stylesheet">
-    
-    <link rel="manifest" id="my-manifest-placeholder">
+    <link rel="manifest"    id="my-manifest-placeholder">
     <style>
         html body {
             width: 100%;
@@ -33,7 +32,7 @@
             calcHeight();
             var urlpart = location.href.split('=');
             var id = "";
-           
+
             if (urlpart.length > 1) {
                 $("#preview-frame").attr("src", urlpart[1]);
                 var myDynamicManifest = {
@@ -54,10 +53,77 @@
                 const stringManifest = JSON.stringify(myDynamicManifest);
                 const blob = new Blob([stringManifest], { type: 'application/json' });
                 const manifestURL = URL.createObjectURL(blob);
- 
-               document.querySelector('#my-manifest-placeholder').setAttribute('href', manifestURL);
+
+                document.querySelector('#my-manifest-placeholder').setAttribute('href', manifestURL);
 
             }
+
+            // Register service worker to control making site work offline
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker
+                    .register('/Covid-19')
+                    .then(function () { console.log('registered');});
+            }
+
+            // Code to handle install prompt on desktop
+
+            let deferredPrompt;
+            const addBtn = document.querySelector('.add-button');
+            addBtn.style.display = 'none';
+
+            window.addEventListener('appinstalled', (evt) => {
+
+                //const maindv = document.getElementById('Main');
+                //maindv.style.display = 'block';
+            });
+
+            window.addEventListener('beforeinstallprompt', (e) => {
+                // Prevent Chrome 67 and earlier from automatically showing the prompt
+                e.preventDefault();
+                // Stash the event so it can be triggered later.
+                deferredPrompt = e;
+                // Update UI to notify the user they can add to home screen
+                addBtn.style.display = 'block';
+
+                addBtn.addEventListener('click', (e) => {
+
+
+                    addBtn.style.display = 'none';
+                    // Show the prompt
+                    deferredPrompt.prompt();
+                    // Wait for the user to respond to the prompt
+                    deferredPrompt.userChoice.then((choiceResult) => {
+                        if (choiceResult.outcome === 'accepted') {
+                            //const maindv = document.getElementById('Main');
+                            //maindv.style.display = 'block';
+                        } else {
+                            //console.log('User dismissed the A2HS prompt');
+                        }
+                        deferredPrompt = null;
+                    });
+                });
+            });
+
+            self.addEventListener('install', function (e) {
+                e.waitUntil(
+                    caches.open('video-store').then(function (cache) {
+                        return cache.addAll([
+                            '/Covid-19/',
+                            '/Covid-19/index.html'
+                        ]);
+                    })
+                );
+            });
+
+            self.addEventListener('fetch', function (e) {
+                console.log(e.request.url);
+                e.respondWith(
+                    caches.match(e.request).then(function (response) {
+                        return response || fetch(e.request);
+                    })
+                );
+            });
+
         });
 
         $(window).resize(function () {
@@ -75,73 +141,4 @@
     <iframe id="preview-frame" src="/" name="preview-frame" frameborder="0" noresize="noresize"></iframe>
     <button class="w3-button w3-block w3-teal footer add-button">Add to Home Screen</button>
 </body>
-<script>// Register service worker to control making site work offline
-if('serviceWorker' in navigator) {
-  navigator.serviceWorker
-      .register('/Covid-19/index.html')
-           .then(function() {  });
-}
-
-// Code to handle install prompt on desktop
-
-let deferredPrompt;
-const addBtn = document.querySelector('.add-button');
-addBtn.style.display = 'none';
-
-window.addEventListener('appinstalled', (evt) => {
-
-    //const maindv = document.getElementById('Main');
-    //maindv.style.display = 'block';
-});
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  // Prevent Chrome 67 and earlier from automatically showing the prompt
-  e.preventDefault();
-  // Stash the event so it can be triggered later.
-  deferredPrompt = e;
-  // Update UI to notify the user they can add to home screen
-  addBtn.style.display = 'block';
- 
-    addBtn.addEventListener('click', (e) => {
- 
-
-    addBtn.style.display = 'none';
-    // Show the prompt
-    deferredPrompt.prompt();
-    // Wait for the user to respond to the prompt
-    deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-            //const maindv = document.getElementById('Main');
-            //maindv.style.display = 'block';
-        } else {
-          //console.log('User dismissed the A2HS prompt');
-        }
-        deferredPrompt = null;
-      });
-    });
-});
-
-
-
-    self.addEventListener('install', function (e) {
-        e.waitUntil(
-            caches.open('video-store').then(function (cache) {
-                return cache.addAll([
-                    '/Covid-19/',
-                    '/Covid-19/index.html' 
-                ]);
-            })
-        );
-    });
-
-    self.addEventListener('fetch', function (e) {
-        console.log(e.request.url);
-        e.respondWith(
-            caches.match(e.request).then(function (response) {
-                return response || fetch(e.request);
-            })
-        );
-    });
-
- </script>
 </html>
