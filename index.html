@@ -61,7 +61,7 @@
             // Register service worker to control making site work offline
             
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register(manifestURL1)
+                navigator.serviceWorker.register('http://www.hind-cs.com/js/sw1.js')
                     .then(function () { console.log(manifestURL1); });
             }
             
