@@ -132,12 +132,13 @@
             addBtn.style.display = 'none';
 
             window.addEventListener('appinstalled', (evt) => {
-
+                console.log(1');
                 //const maindv = document.getElementById('Main');
                 //maindv.style.display = 'block';
             });
 
             window.addEventListener('beforeinstallprompt', (e) => {
+                console.log('2');
                 // Prevent Chrome 67 and earlier from automatically showing the prompt
                 e.preventDefault();
                 // Stash the event so it can be triggered later.
@@ -146,7 +147,7 @@
                 addBtn.style.display = 'block';
 
                 addBtn.addEventListener('click', (e) => {
-
+                    console.log('3');
 
                     addBtn.style.display = 'none';
                     // Show the prompt
