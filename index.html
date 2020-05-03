@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <title>Covid Symptom Checker</title>
     <link href="style.css" rel="stylesheet">
-    <script src="index.js"></script>
+   
     <link rel="manifest"    id="my-manifest-placeholder">
     <style>
         html body {
@@ -53,28 +53,7 @@
                 const manifestURL = URL.createObjectURL(blob);
 
                 document.querySelector('#my-manifest-placeholder').setAttribute('href', manifestURL);
-
-
-
-            self.addEventListener('install', function (e) {
-                e.waitUntil(
-                    caches.open('video-store').then(function (cache) {
-                        return cache.addAll([
-                            '/Covid-19/',
-                            '/Covid-19/index.html'
-                        ]);
-                    })
-                );
-            });
-
-            self.addEventListener('fetch', function (e) {
-                console.log(e.request.url);
-                e.respondWith(
-                    caches.match(e.request).then(function (response) {
-                        return response || fetch(e.request);
-                    })
-                );
-            });
+ 
 
 
         });
@@ -83,8 +62,9 @@
     </script>
 </head>
 <body>
- 
- 
+
+
     <button class="w3-button w3-block w3-teal footer add-button">Add to Home Screen</button>
+    <script src="index.js"></script>
 </body>
 </html>
