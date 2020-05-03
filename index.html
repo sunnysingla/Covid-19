@@ -57,7 +57,7 @@
                 document.querySelector('#my-manifest-placeholder').setAttribute('href', manifestURL);
 
             }
-            var serW = @"self.addEventListener('install', function (e) {\
+            var serW = "self.addEventListener('install', function (e) {\
             e.waitUntil(\
                 caches.open('video-store').then(function (cache) {\
                     return cache.addAll([\
