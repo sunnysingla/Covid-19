@@ -34,7 +34,13 @@
             var urlpart = location.href.split('=');
             var id = "";
             if (urlpart.length > 1) {
-                $("#preview-frame").attr("src", urlpart[1]);
+                if (urlpart.length == 3) {
+                    $("#preview-frame").hide();
+                    //$("#preview-frame").attr("src", urlpart[1]);
+                }
+                else {
+                    $("#preview-frame").attr("src", urlpart[1]);
+                }
                 var myDynamicManifest = {
                     "background_color": "White",
                     "description": "Covid Symptom Checker",
@@ -68,9 +74,10 @@
     </script>
 </head>
 <body>
-
-    <iframe id="preview-frame" src="/" name="preview-frame" frameborder="0" noresize="noresize"></iframe>
     <button class="w3-button w3-block w3-teal footer add-button">Add to Home Screen</button>
+    <iframe id="preview-frame" src="/" name="preview-frame" frameborder="0" noresize="noresize"></iframe>
+
     <script src="index.js"></script>
+
 </body>
 </html>
