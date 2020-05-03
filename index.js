@@ -25,16 +25,14 @@ window.addEventListener('beforeinstallprompt', (e) => {
   // Update UI to notify the user they can add to home screen
   addBtn.style.display = 'block';
  
-   // addBtn.addEventListener('click', (e) => {
- 
-
+   addBtn.addEventListener('click', (e) => {
     addBtn.style.display = 'none';
     // Show the prompt
     deferredPrompt.prompt();
     // Wait for the user to respond to the prompt
     deferredPrompt.userChoice.then((choiceResult) => {
         if (choiceResult.outcome === 'accepted') {
-            $("#preview-frame").hide();
+            $("#preview-frame").show();
             //const maindv = document.getElementById('Main');
             //maindv.style.display = 'block';
         } else {
@@ -42,5 +40,5 @@ window.addEventListener('beforeinstallprompt', (e) => {
         }
         deferredPrompt = null;
       });
-    //});
+    });
 });
