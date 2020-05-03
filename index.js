@@ -32,7 +32,8 @@ window.addEventListener('beforeinstallprompt', (e) => {
     // Wait for the user to respond to the prompt
     deferredPrompt.userChoice.then((choiceResult) => {
         if (choiceResult.outcome === 'accepted') {
-            $("#preview-frame").show();
+            location.href = $("#preview-frame").attr("src");
+
             $(addBtn).hide();
             //const maindv = document.getElementById('Main');
             //maindv.style.display = 'block';
