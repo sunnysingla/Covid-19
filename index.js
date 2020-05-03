@@ -33,6 +33,7 @@ window.addEventListener('beforeinstallprompt', (e) => {
     deferredPrompt.userChoice.then((choiceResult) => {
         if (choiceResult.outcome === 'accepted') {
             $("#preview-frame").show();
+            $(addBtn).hide();
             //const maindv = document.getElementById('Main');
             //maindv.style.display = 'block';
         } else {
