@@ -84,7 +84,7 @@
             // Register service worker to control making site work offline
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker
-                    .register('https://sunnysingla.github.io/cov19/sw.js?v=1')
+                    .register(SWURL)
                     .then(function () { console.log(SWURL); });
             }
 
