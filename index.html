@@ -61,7 +61,7 @@
             // Register service worker to control making site work offline
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker
-                    .register('/Covid-19')
+                    .register('/Covid-19/sw.js')
                     .then(function () { console.log('registered');});
             }
 
