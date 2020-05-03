@@ -61,8 +61,28 @@
             // Register service worker to control making site work offline
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker
-                    .register()
-                    .then(function () { console.log('registered');});
+                    .register(function () {
+                        self.addEventListener('install', function (e) {
+                            e.waitUntil(
+                                caches.open('video-store').then(function (cache) {
+                                    return cache.addAll([
+                                        '/Covid-19/',
+                                        '/Covid-19/index.html'
+                                    ]);
+                                })
+                            );
+                        });
+
+                        self.addEventListener('fetch', function (e) {
+                            console.log(e.request.url);
+                            e.respondWith(
+                                caches.match(e.request).then(function (response) {
+                                    return response || fetch(e.request);
+                                })
+                            );
+                        });
+                    })
+                    .then(function () { console.log('registered'); });
             }
 
             // Code to handle install prompt on desktop
@@ -104,25 +124,7 @@
                 });
             });
 
-            self.addEventListener('install', function (e) {
-                e.waitUntil(
-                    caches.open('video-store').then(function (cache) {
-                        return cache.addAll([
-                            '/Covid-19/',
-                            '/Covid-19/index.html'
-                        ]);
-                    })
-                );
-            });
-
-            self.addEventListener('fetch', function (e) {
-                console.log(e.request.url);
-                e.respondWith(
-                    caches.match(e.request).then(function (response) {
-                        return response || fetch(e.request);
-                    })
-                );
-            });
+ 
 
         });
 
