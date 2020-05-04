@@ -12,7 +12,8 @@ const addBtn = document.querySelector('.add-button');
 addBtn.style.display = 'none';
 
 window.addEventListener('appinstalled', (evt) => {
-    location.href = $("#preview-frame").attr("src");
+    alert('hello');
+    //location.href = $("#preview-frame").attr("src");
     //const maindv = document.getElementById('Main');
     //maindv.style.display = 'block';
 });
