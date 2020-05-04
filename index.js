@@ -33,9 +33,8 @@ window.addEventListener('beforeinstallprompt', (e) => {
     // Wait for the user to respond to the prompt
     deferredPrompt.userChoice.then((choiceResult) => {
         if (choiceResult.outcome === 'accepted') {
-            location.href = $("#preview-frame").attr("src");
-
-            $(addBtn).hide();
+            var urlpart = location.href.split('?')[1].split('&')[0].split('=')[1];
+            location.href = urlpart;
             //const maindv = document.getElementById('Main');
             //maindv.style.display = 'block';
         } else {
